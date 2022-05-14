@@ -1,0 +1,66 @@
+---
+title: "Compile-Years-2014-2021"
+author: "MCC"
+date: '2022-05-13'
+output: pdf_document
+---
+
+```{r}
+library(readr)
+gva_2014 <- read_csv("gva-2014.csv", 
+                     col_types = cols(`Incident ID` = col_skip(), 
+                                      `Incident Date` = col_date(format = "%B %d, %Y"), 
+                                      Address = col_skip(), `# Killed` = col_integer(), 
+                                      `# Injured` = col_integer(), Operations = col_skip()))
+#View(gva_2014)         
+```
+
+Change Column names `# Killed` & `# Injured` to eliminate `#`
+```{r}
+# Change colnames of all columns
+colnames(gva_2014) <- c("Date", "State", "City", "Killed", "Injured")
+
+# Produce Month columns
+gva_2014$Month <- format(as.Date(gva_2014$Date, format="%Y-%m-%d"),"%m")
+
+gva_2014$Total <- gva_2014$Killed + gva_2014$Injured
+
+#View(gva_2014)
+```
+
+Break down data into State groupings
+
+```{r}
+library(tidyverse)
+library(dplyr)
+
+# Group by State
+gva_2014_by_month <- gva_2014 %>%
+  group_by(Month) %>%
+  summarize(Avg_Monthly=mean(Total))
+
+print(gva_2014_by_month)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

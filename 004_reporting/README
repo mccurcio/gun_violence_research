@@ -1,0 +1,154 @@
+These data sets describe different gun related information for the US.
+
+---------------------------------------------------
+
+1. cdc.firearm.mortality.data.csv - approximately 21.45 kB
+
+Source: Center for Disease Control
+
+Columns
+YEAR - data runs from 2005 to 2019, not all years covered
+STATE - abbreviated US States
+RATE - rate of deaths per 100,000 
+DEATHS - deaths in that year
+URL - All data from CDC, attach the prefix "https://www.cdc.gov/" to each URL
+
+----------------------------------------------------
+
+2. 2020.gun.violence.archive.csv
+
+Source: 
+Gun Violence Archive 
+1133 Connecticut Avenue, NW
+Washington, DC 20036
+inquiry@gva.us.com
+@gundeaths
+https://www.gunviolencearchive.org/
+
+Columns
+Incident ID	-
+Incident Date - Mass shootings between Jan.1 2020 and Dec.31 2020
+State - US full state name
+City Or County - 
+Address	- Street address in City or County
+# Killed - number killed
+# Injured - number injured	
+Operations - NA
+
+-----------------------------------------------------
+
+3. 2021.gun.violence.archive.csv
+
+Source: 
+Gun Violence Archive 
+1133 Connecticut Avenue, NW
+Washington, DC 20036
+inquiry@gva.us.com
+@gundeaths
+https://www.gunviolencearchive.org/
+
+Columns
+-------
+Incident ID	-
+Incident Date - Mass shootings between Jan.1 2021 and Dec.31 2021
+State - US full state name
+City Or County - 
+Address	- Street address in City or County
+# Killed - number killed
+# Injured - number injured	
+Operations - NA
+
+----------------------------------------------------
+
+4. 2014.mass.shootings.data.csv
+
+Source: 
+
+Columns
+-------
+Incident ID	-
+Incident Date - Mass shootings between Jan.1 2020 and Dec.31 2020
+State - US full state name
+City Or County - 
+Address	- Street address in City or County
+# Killed - number killed
+# Injured - number injured	
+Operations - NA
+
+------------------------------------------------------
+
+5. firearm.deaths.usafacts.csv
+
+Source: Centers for Disease Control and Prevention; WISQARS, Fatal Injury Reports, National, Regional and State		
+Exported on: 12/08/2021	
+https://webappa.cdc.gov/sasweb/ncipc/mortrate.html	
+Last Updated 2019 
+Update Schedule Annual
+
+
+Columns
+-------
+Incident Categorization
+Years from 1981 to 2019
+
+---------------------------------------------------
+
+
+
+---------------------------------------------------
+
+NOTES:
+
+A. https://www.motherjones.com/politics/2012/12/mass-shootings-mother-jones-full-data/
+
+US Mass Shootings, 1982–2021: Data From Mother Jones’ Investigation
+The full data set from our in-depth investigation into mass shootings.
+MARK FOLLMAN
+GAVIN ARONSEN
+DEANNA PAN
+
+Editor’s note: This database originally covered cases from 1982 to 2012 and has since been updated and expanded numerous times. For analysis and context on this data—including how we built the database, and a change to the baseline for victim fatalities with cases dating from January 2013—see our Guide to Mass Shootings in America, which includes an interactive map documenting all of the cases.
+
+----------------------------------------------------
+
+B. The Violence Project <admin@theviolenceproject.org> via sendinblue.com 
+https://www.theviolenceproject.org/
+reply-to:	admin@theviolenceproject.org
+to:	mockrun@gmail.com
+date:	Dec 4, 2021, 12:00 PM
+subject:	The Violence Project: Request the Full Database Form Submission
+
+Greetings,
+
+Thank you for downloading The Violence Project Database of Mass Shootings in the United States, 1966–2020, the most comprehensive repository of information on U.S. mass shootings. Attached please find the latest version (Version 4.0, July 2021) of the database: The Violence Project Database of Mass Shootings (.xlsx)
+
+It is vital that The Violence Project Mass Shooter Database is only used for the purpose of better understanding or preventing mass shootings. By downloading this document, all users (individual and organizational) agree to the following terms of use:
+
+    Users agree not to publicly post or display the database, the codebook, or related materials.
+    Users agree not to sell, license, sub-license or otherwise distribute the database, codebook or related materials.
+    All information must be acknowledged and cited appropriately, including any modifications users make to the database for published analysis.
+    Users agree not to use the data, the codebook, or related materials for commercial purposes, unless they purchase a separate commercial use license.
+
+We require all users to supply a name and email address in order to access the database. Doing so, they agree to the terms of the license.
+
+Please contact The Violence Project if you become aware of any users breaching the terms of use.
+
+This project was supported by Award No. 2018-75-CX-0023, awarded by the National Institute of Justice, Office of Justice Programs, U.S. Department of Justice. The opinions, findings, and conclusions or recommendations expressed in this publication are those of the authors and do not necessarily reflect those of the Department of Justice.
+
+If you use this database, please give credit where credit is due, for example: "The Violence Project Mass Shooter Database" or "The Violence Project Database of Mass Shooters". The Principal Investigators on this project are professors Jillian Peterson and James Densley. For electronic publications, please hyperlink back to our website, https://www.theviolenceproject.org. For students and scholars publishing with these data, please cite us, but also let us know so we can track impact and usage.
+
+If you spot a mistake, please tell us so we can correct it. The database is continually updated and modified as new sources of information become available.
+
+Again, thank you for downloading the database. Together, we can better understand and prevent these senseless tragedies.
+
+Sincerely,
+
+Jillian and James
+
+The Violence Project
+
+
+
+
+
+

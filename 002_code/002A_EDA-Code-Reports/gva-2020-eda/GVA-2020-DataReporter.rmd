@@ -1,0 +1,64 @@
+---
+title: "GVA-2020 DataReporter Pkg"
+author: "MCC"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r}
+library(readr)
+gva_2020 <- read_csv("gva-2020.csv", 
+    col_types = cols(`Incident Date` = col_date(format = "%B %d, %Y"), 
+        Address = col_skip(), Killed = col_integer(), 
+        Injured = col_integer(), Operations = col_skip()))
+```
+
+
+
+```{r}
+library(dataReporter)
+
+makeDataReport(gva_2020, replace=TRUE)
+
+```
+
+```{r}
+library(skimr)
+
+skim(gva_2020)
+```
+
+
+
+```{r}
+# Load library
+library(ggplot2)
+library(data.table)
+library(rmarkdown)
+library(DataExplorer)
+
+create_report(gva_2020,
+              output_format = html_document(toc = TRUE, 
+                                            toc_depth = 6, 
+                                            theme = "yeti"),
+              output_file = "gva_2020_eda.html",
+              report_title = "gva_2020_eda Data Report")
+```
+
+
+
+
+```{r}
+library(esquisse)
+
+esquisser(gva_2020)
+```
+
+
+
+
+
+
+
+
+

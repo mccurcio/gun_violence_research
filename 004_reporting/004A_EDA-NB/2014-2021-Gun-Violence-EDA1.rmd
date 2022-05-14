@@ -1,0 +1,88 @@
+---
+title: "2014-2021: Gun Violence EDA"
+date: 2022-05-13
+tags: Gun Violence EDA
+output: html_notebook
+---
+
+Abstract:
+
+This is the Gun Violence Archive data from the yrs, 2014-2021. 
+
+8 Data Features are:
+
+1. Unique ID (unnecessary)
+2. Date
+3. State
+4. City
+5. Street address
+6. Number killed per observation/incident
+7. Number Injured per obs/incident
+8. Operations - not available
+
+The data is extremely complete because it has no missing values in columns or rows. 
+
+Time stamp data is not 'Tidy.' Dates are Month Day, Year.
+
+Is the goal of this work to find a correlation between raise in numbers and poverty or Covid lockdown?
+
+---
+
+The data from the different years was derived from 4 R-library packages.
+
+1. DataExplorer 
+2. DataReporter 
+3. Skimr 
+4. Esquisse 
+
+I was interested to see which was easiest to use and read.
+
+EDA Results Table:
+
+|      EDA/Year |  2014 |  2015 | 2016 | 2017 |  2018 | 2019 |  2020 |  2021 |
+| ------------: | ----: | ----: | ---: | ---: | ----: | ---: | ----: | ----: |
+|           Obs |   272 |   336 |  382 |  348 |   348 |  417 |   611 |  2000 |
+|   Killed(max) |     8 |    19 |   50 |   59 |    17 |   23 |     7 |     6 |
+|  Injured(max) |    16 |    16 |   53 |  441 |    19 |   23 |    21 |     7 |
+|      Cor.test | -0.57 | -0.12 | 0.54 | 0.84 | -0.12 | 0.08 | -0.46 | -0.46 |
+| Unique Cities |   167 |   196 |  208 |  197 |   194 |  222 |   289 |   711 |
+
+
+1. Check original data for several values
+   - 2017+2018, 2021 number of obs 
+   - Check 2019 killed and injured numbers
+   - Check R-correlation values for:
+       - 2015/2018 @ -0.12, 
+       - 2020/2021 @ -0.46.
+                              
+
+To Do: 
+
+1. Go back and inspect results from `skimr` package.
+2. Create 5 or 6 number summary of Killed and Injured data by year.
+3. Create Histogram of States versus number of killed/injured/both(?)
+4. Or create list of top 5(x?) states with most killings/injured
+5. Go to original data sets and correct quotes! Do you remove all Quotes or insert for std-ization.
+6. Get 2021 numbers to see if the trajectory is the same or greater than any other year(s).
+7. Q. Can odds ratios be calculated for the different years or odds byt city?
+8. Is it important to obtain census data for each year to calculate %rate killings/head or injures/head
+9. What is the worst states and city overall? by total numbers?
+10. Does state need to be changed to 2-letter Abbreviation for Histogram mapping-later on??
+11. Need to `melt` observations to get all 7 years together on one spreadsheet?
+12. Check over 2017 numbers to see WHY the number of injured is 441??
+13. Why is 2021 so much more than the previous years??
+14. Shooting data can be broken into months, day of week, etc. Necessary or Not??
+15. Produce a better R report for compiled data??
+16. Compile all years??
+
+
+Conclusion:
+
+1. I did not use Skimr and Esquisse at all since they did not produce a PDF or HTML report. For ease DataExplorer and DataReporter were used bc it easy to find their results. Reports are printed by default.
+
+2. There is a benefit of having PDF report, it is there can be very little fear of tampering. compared to R-code and HTML.
+
+3. dataReporter had a histogram graphic of States versus number of Killed or Injured or both(not sure) that would be useful to reproduce for the analysis.
+
+4. DataExplorer had nice graphics for missing data that showed number missing per row. Very easy to follow.
+
