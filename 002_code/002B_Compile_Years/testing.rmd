@@ -8,9 +8,13 @@ output: html_document
 
 Function to break down data into State groupings
 
-```{r eval=FALSE, include=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(dplyr)
+
+Month=0
+Avg_Monthly=0
+Total=0
 
 .GlobalEnv$make_month_and_total <- function(df) {
   df_by_month <- df %>%
@@ -39,22 +43,18 @@ for (i in 1:length(csv_files)) {
   colnames(df) <- c("Date", "State", "City", "Killed", "Injured")
   
   # Produce Month & Total columns 
-  .GlobalEnvdf$Month <- format(as.Date(df$Date, format="%m-%d-%Y"),"%m")
-  .GlobalEnvdf$Total <- df$Killed + df$Injured
+  .GlobalEnv$df$Month <- format(as.Date(df$Date, format="%m-%d-%Y"),"%m")
+  .GlobalEnv$df$Total <- df$Killed + df$Injured
   
-  print(i)
   df_by_month <- df %>% 
     group_by(Month) %>% 
     summarize(Avg_Monthly=mean(Total))
+  
+  print(i)
   print(df_by_month)
 }
 ```
 
-
-
-gva_2014_by_month <- gva_2014 %>%
-  group_by(Month) %>%
-  summarize(Avg_Monthly=mean(Total))
 
 
 
