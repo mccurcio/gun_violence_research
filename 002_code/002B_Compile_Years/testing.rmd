@@ -1,0 +1,76 @@
+---
+title: "testing"
+author: "MCC"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+
+Function to break down data into State groupings
+
+```{r eval=FALSE, include=FALSE}
+library(tidyverse)
+library(dplyr)
+
+.GlobalEnv$make_month_and_total <- function(df) {
+  df_by_month <- df %>%
+  group_by(Month) %>%
+  summarize(Avg_Monthly=mean(Total))
+  print(df_by_month)
+}
+```
+
+```{r}
+library(readr)
+library(here)
+i_am("README.md")
+
+here("001_data", "001A_ORIGINAL_gun_violence_archive_data")
+
+csv_files <- list.files(path = here("001_data", "001A_ORIGINAL_gun_violence_archive_data"),
+                        pattern = ".csv")
+
+for (i in 1:length(csv_files)) {
+  
+  load_location <- paste(here("001_data", "001A_ORIGINAL_gun_violence_archive_data"), csv_files[i], sep = "/")
+  df <- read_csv(load_location, 
+                 col_types = cols(`Incident Date` = col_datetime(format = "%B %d, %Y")))
+  df <- df[-c(1,5,8)]
+  colnames(df) <- c("Date", "State", "City", "Killed", "Injured")
+  
+  # Produce Month & Total columns 
+  .GlobalEnvdf$Month <- format(as.Date(df$Date, format="%m-%d-%Y"),"%m")
+  .GlobalEnvdf$Total <- df$Killed + df$Injured
+  
+  print(i)
+  df_by_month <- df %>% 
+    group_by(Month) %>% 
+    summarize(Avg_Monthly=mean(Total))
+  print(df_by_month)
+}
+```
+
+
+
+gva_2014_by_month <- gva_2014 %>%
+  group_by(Month) %>%
+  summarize(Avg_Monthly=mean(Total))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

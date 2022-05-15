@@ -10,7 +10,7 @@ library(readr)
 gva_2014 <- read_csv("gva-2014.csv", 
                      col_types = cols(`Incident ID` = col_skip(), 
                                       `Incident Date` = col_date(format = "%B %d, %Y"), 
-                                      Address = col_skip(), `# Killed` = col_integer(), 
+                                       Address = col_skip(), `# Killed` = col_integer(), 
                                       `# Injured` = col_integer(), Operations = col_skip()))
 #View(gva_2014)         
 ```
