@@ -1,31 +1,46 @@
 ---
-title: "Compile-Years-2014-2021"
+title: "Compile Monthly Shooting Numbers"
 author: "MCC"
 date: '2022-05-13'
 output: pdf_document
 ---
 
+List files in Data folder
+```{r}
+getwd()
+DATA_FOLDER <- "../011_data/011A_ORIGINAL/"
+
+yr_data <- list.files(path=DATA_FOLDER, pattern=NULL, all.files=FALSE,
+    full.names=FALSE)
+```
+
+
+
+
+
+
 ```{r}
 library(readr)
-gva_2014 <- read_csv("gva-2014.csv", 
+
+gva_2015 <- read_csv("../../001_data/001A_ORIGINAL_gun_violence_archive_data/gva-2015.csv", 
                      col_types = cols(`Incident ID` = col_skip(), 
                                       `Incident Date` = col_date(format = "%B %d, %Y"), 
                                       Address = col_skip(), `# Killed` = col_integer(), 
                                       `# Injured` = col_integer(), Operations = col_skip()))
-#View(gva_2014)         
+View(gva_2015)
 ```
 
 Change Column names `# Killed` & `# Injured` to eliminate `#`
 ```{r}
 # Change colnames of all columns
-colnames(gva_2014) <- c("Date", "State", "City", "Killed", "Injured")
+colnames(gva_2015) <- c("Date", "State", "City", "Killed", "Injured")
 
 # Produce Month columns
-gva_2014$Month <- format(as.Date(gva_2014$Date, format="%Y-%m-%d"),"%m")
+gva_2015$Month <- format(as.Date(gva_2015$Date, format="%Y-%m-%d"),"%m")
 
-gva_2014$Total <- gva_2014$Killed + gva_2014$Injured
+gva_2015$Total <- gva_2014$Killed + gva_2015$Injured
 
-#View(gva_2014)
+#View(gva_2015)
 ```
 
 Break down data into State groupings
@@ -35,11 +50,11 @@ library(tidyverse)
 library(dplyr)
 
 # Group by State
-gva_2014_by_month <- gva_2014 %>%
+gva_2015_by_month <- gva_2015 %>%
   group_by(Month) %>%
   summarize(Avg_Monthly=mean(Total))
 
-print(gva_2014_by_month)
+print(gva_2015_by_month)
 ```
 
 

@@ -6,7 +6,10 @@ This data science project is based on data found at:
 
 - [Gun Violence Archive](https://www.gunviolencearchive.org/reports): collected for 2014-2021
 
-The file directory structure generally follows a schema suggested in Tidyverse For Data Science
+The file directory structure generally follows a schema suggested in [Tidyverse For Data Science](https://jhudatascience.org/tidyversecourse/)
 
 ![](/003_figures/directory_structure.png)
 
+Thank You,
+
+Matt Curcio
