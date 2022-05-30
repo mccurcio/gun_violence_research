@@ -57,6 +57,8 @@ No, but we do work to make vehicles safer. Auto safety is a boring, nonpoliticiz
 
 Picture: Deaths from firearms versus traffic accidents
 
+![](https://static01.nyt.com/newsgraphics/2021/04/21/opinion-kristof-guns/f7a016fc34142f2002d3b5519c5ef7876a91bedf/kristof-gun-mvt-600.png)
+
 Source: C.D.C. Wonder
 
 Likewise, we have a nonpoliticized safety process for ladders, swimming pools and toys ([eight pages of federal regulations](https://www.osha.gov/laws-regs/regulations/standardnumber/1926/1926.1053) on ladders, which kill around [100 people](https://www.cdc.gov/niosh/newsroom/feature/ladder-safety.html#:~:text=Each%20year%20in%20the%20U.S.,the%20workplace%20and%20at%20home.) a year, with safety campaigns including making March “ladder safety month”). Why can’t we take a similar evidence-based approach to guns — not aiming for mass confiscation but for reducing the carnage?
