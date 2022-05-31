@@ -1,0 +1,99 @@
+---
+title: "Cumulative-Killed Graphic for 2014 "
+author: "MCC"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+```{r message=FALSE, warning=FALSE}
+library(readr)
+library(lubridate)
+library(ggplot2)
+
+gva_2014 <- read_csv("~/Desktop/gun_violence_research/001_data/001A_ORIGINAL/gva-2014.csv", 
+        col_types = cols(`Incident ID` = col_skip(), 
+        `Incident Date` = col_date(format = "%B %d, %Y"), 
+        State = col_skip(), `City Or County` = col_skip(), 
+        Address = col_skip(), Operations = col_skip()))
+
+names(gva_2014) <- c("ID", "Killed", "Injured")
+
+# Order dataframe by 'ID' (incident date)
+gva_2014 <- gva_2014[order(gva_2014$`ID`), ]
+
+# View(gva_2014)
+```
+
+## Detemination of Slope, Intercept & R^2 Functions
+** Two methods**
+```{r}
+# linear_model <- lm(gva_2014$Cum_Killed ~ gva_2014$Days)
+# cf <- coef(linear_model)
+# print(cf[1]); print(cf[2])
+
+slope <- function(x, y) {
+  cov(x, y) / var(x)
+}
+intercept <- function(x, y) {
+  mean(y) - slope(x, y) * mean(x)
+}
+
+R_Squared = function(x, y) {
+  cor(x, y)^2
+}
+```
+
+     
+## Convert ID & Killed/Injured/Grand Total to cumulative numbers
+```{r message=FALSE, warning=FALSE}
+date <- ymd(gva_2014$`ID`)
+gva_2014$Days <- yday(date) - 1 # so Jan 1 = day 0 
+
+gva_2014$Cum_Killed <- cumsum(gva_2014$Killed)
+gva_2014$Cum_Injured <- cumsum(gva_2014$Injured)
+gva_2014$Grand_Total <- gva_2014$Cum_Killed + gva_2014$Cum_Injured
+
+tail(gva_2014)
+```
+
+
+```{r}
+names(gva_2014)
+```
+
+
+
+\newpage
+## Cumulative Deaths vs Days for 2014
+```{r message=FALSE, warning=FALSE}
+ggplot(gva_2014, aes(x=gva_2014$Days, y=gva_2014$Cum_Killed)) +
+  geom_line() +
+  labs(x='Day No.', y='Cumulative Killed 2014') +
+  geom_smooth(method = "lm")
+
+graphic_s  <- slope(gva_2014$Days, gva_2014$Cum_Killed)
+graphic_i  <- intercept(gva_2014$Days, gva_2014$Cum_Killed)
+graphic_r2 <- R_Squared(gva_2014$Days, gva_2014$Cum_Killed)
+
+print(paste('Slope = ', graphic_s))
+print(paste('Intercept = ', graphic_i))
+print(paste('R_Squared = ', graphic_r2))
+```
+
+
+\newpage
+## Cumulative Total Shot vs Days for 2014
+```{r}
+ggplot(gva_2014, aes(x=Days, y=Grand_Total)) +
+  geom_line() +
+  labs(x='Day No.', y='Grand Total (K+I) 2014') +
+  geom_smooth(method = "lm")
+
+graphic_s <- slope(gva_2014$Days, gva_2014$Grand_Total)
+graphic_i <- intercept(gva_2014$Days, gva_2014$Grand_Total)
+graphic_r2 <- R_Squared(gva_2014$Days, gva_2014$Grand_Total)
+
+print(paste('Slope = ', graphic_s))
+print(paste('Intercept = ', graphic_i))
+print(paste('R_Squared = ', graphic_r2))
+```
