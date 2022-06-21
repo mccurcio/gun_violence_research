@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 output: pdf_document
 ---
 
-```{r message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, include=FALSE}
 library(readr)
 library(lubridate)
 library(ggplot2)
@@ -53,7 +53,7 @@ gva_2014$Cum_Killed <- cumsum(gva_2014$Killed)
 gva_2014$Cum_Injured <- cumsum(gva_2014$Injured)
 gva_2014$Grand_Total <- gva_2014$Cum_Killed + gva_2014$Cum_Injured
 
-tail(gva_2014)
+#tail(gva_2014)
 ```
 
 
@@ -61,16 +61,16 @@ tail(gva_2014)
 names(gva_2014)
 ```
 
-
-
 \newpage
-## Cumulative Deaths vs Days for 2014
+## Cumulative Deaths (ONLY) vs Days for 2014
 ```{r message=FALSE, warning=FALSE}
 ggplot(gva_2014, aes(x=gva_2014$Days, y=gva_2014$Cum_Killed)) +
   geom_line() +
   labs(x='Day No.', y='Cumulative Killed 2014') +
   geom_smooth(method = "lm")
+```
 
+```{r}
 graphic_s  <- slope(gva_2014$Days, gva_2014$Cum_Killed)
 graphic_i  <- intercept(gva_2014$Days, gva_2014$Cum_Killed)
 graphic_r2 <- R_Squared(gva_2014$Days, gva_2014$Cum_Killed)
@@ -88,7 +88,9 @@ ggplot(gva_2014, aes(x=Days, y=Grand_Total)) +
   geom_line() +
   labs(x='Day No.', y='Grand Total (K+I) 2014') +
   geom_smooth(method = "lm")
+```
 
+```{r}
 graphic_s <- slope(gva_2014$Days, gva_2014$Grand_Total)
 graphic_i <- intercept(gva_2014$Days, gva_2014$Grand_Total)
 graphic_r2 <- R_Squared(gva_2014$Days, gva_2014$Grand_Total)

@@ -20,7 +20,7 @@
 
 - Source Unknown
 - Format may need study
-- Features: Firearm deaths (People), By type, Homicide (People), Suicide (People), Unintentional (People), , Legal intervention (People),  Undetermined (People), By race, By State, by gneder,
+- Features: Firearm deaths (People), By type, Homicide (People), Suicide (People), Unintentional (People), , Legal intervention (People),  Undetermined (People), By race, By State, by gneder
 
 ### D. "cdc.firearm.mortality.data.csv"
 
@@ -112,14 +112,14 @@
 7. Firearms and Crime Statistics
 
 - https://bjs.ojp.gov/content/guns
-- Date Created: June 3, 2021 
+- Date Created: June 3, 2021
 
 8. Firearm Mortality by State
 
 - https://www.cdc.gov/nchs/pressroom/sosmap/firearm_mortality/firearm.htm
 - CSV Available
 - Source: https://wonder.cdc.gov
-- Page last reviewed: March 1, 2022	
+- Page last reviewed: March 1, 2022
 - Content source: CDC/National Center for Health Statistics 
 
 9. ATF

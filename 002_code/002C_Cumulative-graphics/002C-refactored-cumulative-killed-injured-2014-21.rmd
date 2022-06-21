@@ -1,0 +1,162 @@
+---
+title: "Cumulative-Killed-Shot Graphics 2014-2022"
+author: "MCC"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+## Setup
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+library(readr)
+library(lubridate)
+library(ggplot2)
+library(tidyverse)
+library(knitr)
+library(here)
+
+here::i_am("Desktop/gun_violence_research")
+
+pagebreak <- function() {
+  if(knitr::is_latex_output())
+    return("\\newpage")
+  else
+    return('<div style="page-break-before: always;" />')
+}
+```
+
+## Read Gun Violence dataframes
+
+**read_gva_data**
+
+```{r}
+read_gva_data <- function(i) {
+  file_year = paste("~/Desktop/gun_violence_research/001_data/001A_ORIGINAL/gva-", i, ".csv", sep="")
+  # print(file_year)
+  gva_df <- read_csv(file_year, 
+        col_types = cols(`Incident ID` = col_skip(), 
+        `Incident Date` = col_date(format = "%B %d, %Y"), 
+        State = col_skip(), `City Or County` = col_skip(), 
+        Address = col_skip(), Operations = col_skip()))
+  
+  # Simplify Names & Order data frame by 'ID' (incident date)
+  names(gva_df) <- c("ID", "Killed", "Injured")
+  gva_df <- gva_df[order(gva_df$`ID`), ]
+  
+  ## Calculate Killed/Injured/Grand Totals
+  date <- ymd(gva_df$`ID`)
+  gva_df$Days <- yday(date) - 1 # so Jan 1 = day 0 
+  gva_df$Cum_Killed <- cumsum(gva_df$Killed)
+  gva_df$Cum_Injured <- cumsum(gva_df$Injured)
+  gva_df$Grand_Total <- gva_df$Cum_Killed + gva_df$Cum_Injured
+  return(gva_df)
+}
+```
+
+`r pagebreak()`
+
+## Graph of Cumulative Deaths vs Days for Given Year
+
+**graph_deaths**
+
+```{r message=FALSE, warning=FALSE}
+graph_deaths <- function(gva_df, subject, i){
+  #print("graph_deaths")
+  y_col <- paste('gva_df$', subject, sep="")
+  title <- paste(i, ": Cumulative ", subject, "v. Day Per Year", sep="")
+  y_title <- paste("Cumulative ", subject, sep="")
+  require(ggplot2)
+  plot(ggplot(gva_df, aes(x=gva_df$Days, y=y_col)) +
+       geom_line() +
+       ggtitle(title) +
+       labs(x='Day No. of 365 Days', y=y_title) +
+       geom_smooth(method = "lm"))
+}
+```
+
+## Regression Numbers For Killed vs Days for Given Year
+
+**calc_regression_killed**
+
+```{r}
+calc_regression_killed <- function(gva_df, i){
+  #print("calc_regression_killed")
+  #print(names(gva_df))
+  #fit simple linear regression model
+  model <- lm(gva_df$Cum_Killed ~ gva_df$Days)
+  print(paste("Regression Values For Year: ", i, sep=""))
+  print(model)
+}
+```
+
+## Graph Total Shot (Killed + Injured) vs Days For Given Year
+
+**graph_total_shot**
+
+```{r message=FALSE, warning=FALSE}
+graph_total_shot <- function(gva_df, i){
+  #print("graph_total_shot")
+  require(ggplot2)
+  plot(ggplot(gva_df, aes(x=gva_df$Days, y=gva_df$Grand_Total)) +
+       geom_line() +
+       ggtitle("Cumulative Shot (Killed + Injured) Per Year ",
+               subtitle = i) +
+       labs(x="Day No. of 365 Days", y="Cumulative Total Shot (Killed + Injured)") +
+       geom_smooth(method = "lm"))
+}
+```
+
+## Calculate Regression Numbers For Total Shot vs Days for Given Year
+
+**calc_regression_total_shot**
+
+```{r}
+calc_regression_total_shot <- function(gva_df, i){
+  #print("calc_regression_total_shot")
+  #fit simple linear regression model
+  model <- lm(gva_df$Grand_Total ~ gva_df$Days)
+  print(paste("Regression Values For Year: ", i, sep=""))
+  print(model)
+}
+```
+ 
+
+
+## Main
+```{r message=FALSE, warning=FALSE}
+for (i in 2014:2021) {
+  gva_df <- data.frame()
+  gva_df <- read_gva_data(i)
+  subject = "Killed"
+  pagebreak()
+  graph_deaths(gva_df, subject, i)
+  calc_regression_killed(gva_df, i)
+  graph_total_shot(gva_df, i)
+  calc_regression_total_shot(gva_df, i)
+}
+```
+
+| YEAR | Killed    | Total    | AVG |
+| :--- | :-------- | :------- | :-- |
+| 2014 | 0.7628257 | 4.024422 | 5.3 |
+| 2015 | 1.059014  | 5.157974 | 4.9 |
+| 2016 | 1.384732  | 6.204191 | 4.5 |
+| 2017 | 1.232796  | 6.456688 | 5.2 |
+| 2018 | 1.062215  | 5.377669 | 5.1 |
+| 2019 | 1.348324  | 6.540035 | 4.9 |
+| 2020 | 1.588776  | 10.33217 | 6.5 |
+| 2021 | 56.16621  | 151.9159 | 2.7 |
+|      |           | Avg      | 4.9 |
+
+
+
+
+
+
+
+
+
+
+
+
+
